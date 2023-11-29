@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Jogo</title>
+</head>
+<body>
+    <pre>
+        print("***********************************")
+        print("Bem vindo(a) ao Jogo da Advinhação!")
+        print("***********************************")
+
+import random
+import os
+
+valor_minimo = 1
+valor_maximo = 100
+numero_secreto = random.randrange(valor_minimo,valor_maximo + 1)
+
+tentativas = [1,2,3]
+numero_tentativas = 0
+
+while True:
+    print('Escolha o nível de dificuldade \n Fácil (1)  Médio(2)  Difícil(3)')
+    numero_tentativas = int(input('\nDigite sua escolha: '))
+    if numero_tentativas not in tentativas:
+        print('Opção inválida')
+    else:
+        break
+
+if numero_tentativas == 1:
+    numero_tentativas = 20
+    print(F"Fácil você tem: {numero_tentativas} tentativas")
+
+
+elif numero_tentativas == 2:
+    numero_tentativas = 15
+    print(F"Médio você tem: {numero_tentativas} tentativas")
+
+
+elif numero_tentativas == 3:
+    numero_tentativas = 10
+    print(F"Difícil você tem: {numero_tentativas} tentativas")
+
+jogadas = 0
+chute = int(input(F"\nDigite um valor entre {valor_minimo} e {valor_maximo}: "))
+diferenca = chute - numero_secreto
+
+#print(F"\nSeu chute é: {chute}.")
+
+while chute != numero_secreto:
+    if diferenca > 0:
+        if diferenca <= valor_maximo * 0.1 and diferenca != 0:
+            print('\nCapivara no barranco! Agora vai =), um cabelo a menos')
+        elif diferenca > valor_maximo * 0.1 and diferenca < valor_maximo * 0.5:
+            print('\nMenos geeelo fih! Vai aguar o scoth.')
+        else:
+            print('\nQue isso! Foi lá nas núvens, baixa isso.')
+    else:
+        if diferenca > valor_maximo * (-0.1) and diferenca != 0:
+            print('\nCapivara no barranco! Agora vai =), o beiço de uma pulga a mais')
+        elif diferenca <= valor_maximo * (-0.1) and diferenca >= valor_maximo * (-0.5):
+            print('\nNesse feijão aí não tem caldo, pode aumentar um pouco.')
+        else:
+            print('\nMais raso que água de poço, aumenta bem mais.')
+    jogadas =+ jogadas + 1
+    print(F"\nJogada: {jogadas} de {numero_tentativas}")
+    chute = int(input("\nDigite um novo valor: "))
+    diferenca = chute - numero_secreto
+    if jogadas > numero_tentativas:
+        print(F"\nJogada: {jogadas} de {numero_tentativas}, Acabou o jogo!")
+
+if chute == numero_secreto:
+    print('\nVocê acertou! Parabéns')
+    </pre>
+</body>
+</html>
